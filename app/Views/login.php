@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Mahasiswa</title>
+  <title>Login Akun</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"> <!-- Bootstrap Icons -->
   <style>
@@ -50,8 +50,8 @@
 
     <form action="<?= base_url('/auth/loginProcess') ?>" method="post" class="text-start">
       <div class="mb-3">
-        <label for="Username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="Username" name="username">
+        <label for="email" class="form-label">email</label>
+        <input type="text" class="form-control" id="email" name="email">
       </div>
       <div class="mb-3">
         <label for="Password" class="form-label">Password</label>

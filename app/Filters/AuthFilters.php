@@ -21,12 +21,12 @@ class AuthFilters implements FilterInterface
 
         // Kalau user sudah login tapi nyoba ke login page
         $currentController = service('router')->controllerName();
-        if ($currentController === 'App\Controllers\Auth') {
+        if ($currentController === 'App\Controllers\AuthController') {
             $role = $session->get('role');
-            if ($role === 'admin') {
-                return redirect()->to('admin');
-            } elseif ($role === 'student') {
-                return redirect()->to('student');
+            if ($role === 'gudang') {
+                return redirect()->to('gudang');
+            } elseif ($role === 'dapur') {
+                return redirect()->to('dapur');
             }
         }
 
@@ -46,13 +46,13 @@ class AuthFilters implements FilterInterface
         $session = session();
 
         // ✅ Cegah user yang sudah login untuk kembali ke halaman login
-        if ($session->get('isLoggedIn') && service('router')->controllerName() === 'App\Controllers\LoginController') {
+        if ($session->get('isLoggedIn') && service('router')->controllerName() === 'App\Controllers\AuthController') {
             $role = $session->get('role');
 
-            if ($role === 'admin') {
-                return redirect()->to('admin');
-            } elseif ($role === 'student') {
-                return redirect()->to('student');
+            if ($role === 'gudang') {
+                return redirect()->to('gudang');
+            } elseif ($role === 'dapur') {
+                return redirect()->to('dapur');
             } else {
                 return redirect()->to('dashboard'); // default kalau role lain
             }

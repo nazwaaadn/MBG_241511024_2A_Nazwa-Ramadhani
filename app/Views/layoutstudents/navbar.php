@@ -22,10 +22,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item <?= ($page == 'home') ? 'active' : '' ?>">
+            <li class="nav-item">
               <a class="nav-link" href="<?= base_url('/home') ?>">Home</a>
             </li>
-            <li class="nav-item <?= ($page == 'courses') ? 'active' : '' ?>">
+            <li class="nav-item">
               <a class="nav-link" href="<?= base_url('/addnewcourse') ?>">Courses</a>
             </li>
             <li class="nav-item">

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?= $this->include('layouts/head') ?>
+<?= $this->include('layoutstudents/head') ?>
 <body>
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
@@ -11,12 +11,12 @@
         </div>
     </div>
     <!-- Navbar -->
-    <?= $this->include('layouts/navbar') ?>
+    <?= $this->include('layoutstudents/navbar') ?>
 
      <?= $content ?>
 
     <!-- Footer -->
-    <?= $this->include('layouts/footer') ?>
+    <?= $this->include('layoutstudents/footer') ?>
 
     <!-- Bootstrap core JavaScript -->
   <script src="<?= base_url('Student/vendor/jquery/jquery.min.js') ?>"></script>

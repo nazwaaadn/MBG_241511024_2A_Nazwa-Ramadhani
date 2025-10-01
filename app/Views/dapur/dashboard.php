@@ -104,47 +104,7 @@
               </div>
 
 
-              <div class="col-md-9">
-                <div class="tab-content" id="v-pills-tabContent">
-
-                  <div class="tab-pane fade show active" id="theory" role="tabpanel" aria-labelledby="theory-tab">
-                    <div class="row">
-                      <?php foreach ($coursestheory as $crs): ?>
-                        <div class="col-md-4 mb-4">
-                          <div class="card">
-                            <div class="card-body">
-                              <h5 class="card-title"><?= $crs['course_name'] ?></h5>
-                              <p class="card-text">Lihat Course lebih Detail</p>
-                              <br>
-                              <a href="<?= base_url("/mycourse/detail/" . $crs['course_id']) ?>" class="btn btn-primary">See Course</a>
-                            </div>
-                          </div>
-                        </div>
-                      <?php endforeach; ?>
-                    </div>
-                  </div>
-
-                  <div class="tab-pane fade" id="practice" role="tabpanel" aria-labelledby="practice-tab">
-                    <div class="row">
-                      <?php foreach ($coursespractice as $crs): ?>
-                        <div class="col-md-4 mb-4">
-                          <div class="card-body">
-                            <h5 class="card-title"><?= $crs['course_name'] ?></h5>
-                            <p class="card-text">Lihat Course lebih Detail</p>
-                            <br>
-                            <a href="<?= base_url("/") ?>" class="btn btn-primary">See Course</a>
-                          </div>
-                        </div>
-                    </div>
-                  <?php endforeach; ?>
-                  </div>
-                </div>
-
-                <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
-                  <p>Konten lainnya...</p>
-                </div>
-
-              </div>
+              
             </div>
           </div>
         </div>
@@ -153,7 +113,7 @@
     </div>
   </section>
 
-  <script>
+  <!-- <script>
     const user = [
         {
             user_id: 2717,
@@ -195,4 +155,4 @@
             
         }, timeout);
     }
-  </script>
+  </script> -->

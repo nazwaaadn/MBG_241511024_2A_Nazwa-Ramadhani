@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\Admin;
 use App\Models\Biodata;
-use App\Models\Users;
+use App\Models\Gudang;
+use App\Models\User;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class AuthController extends BaseController
@@ -17,10 +17,10 @@ class AuthController extends BaseController
         if ($session->get('isLoggedIn')) {
             // Redirect sesuai role
             $role = $session->get('role');
-            if ($role === 'admin') {
-                return redirect()->to('/admin');
-            } elseif ($role === 'student') {
-                return redirect()->to('/student');
+            if ($role === 'gudang') {
+                return redirect()->to('/gudang');
+            } elseif ($role === 'dapur') {
+                return redirect()->to('/dapur');
             } else {
                 return redirect()->to('/home');
             }
@@ -33,25 +33,25 @@ class AuthController extends BaseController
     public function loginProcess()
     {
         $session = session();
-        $userModel = new Users();
+        $userModel = new User();
 
-        $username = $this->request->getPost('username');
+        $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        $user = $userModel->where('username', $username)->first();
+        $user = $userModel->where('email', $email)->first();
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $session->set([
                     'isLoggedIn' => true,
-                    'user_id'    => $user['user_id'],
+                    'id'    => $user['id'],
                     'role'       => $user['role'],
                 ]);
                 
-                if ($user['role'] === 'admin') {
-                    return redirect()->to('/admin');
-                } elseif ($user['role'] === 'student') {
-                    return redirect()->to('/student');
+                if ($user['role'] === 'gudang') {
+                    return redirect()->to('/gudang');
+                } elseif ($user['role'] === 'dapur') {
+                    return redirect()->to('/dapur');
                 } else {
                     return redirect()->to('/home');
                 }
@@ -61,7 +61,7 @@ class AuthController extends BaseController
                 return redirect()->back();
             }
         } else {
-            $session->setFlashdata('error', 'Username tidak ditemukan');
+            $session->setFlashdata('error', 'email tidak ditemukan');
             return redirect()->back();
         }
     }
@@ -72,48 +72,4 @@ class AuthController extends BaseController
         return redirect()->to('/login');
     }
 
-    public function data_mahasiswa()
-    {
-        if (! session()->get('isLoggedIn')) {
-            return redirect()->to('/login');
-        }
-
-        $users = new Users();
-        $mahasiswa = $users->getMahasiswa();
-        $data = [
-            'title'   => 'Data Mahasiswa',
-            'content' => view('authentication/table', ['mahasiswa' => $mahasiswa])
-        ];
-        
-        return view('authentication/template_02', $data);
-    }
-
-    public function homepage()
-    {
-        if (! session()->get('isLoggedIn')) {
-            return redirect()->to('/login');
-        }
-
-        $data = [
-            'title'   => 'Ini Home',
-            'content' => view('welcome')
-        ];
-        return view('authentication/template_02', $data);
-    }
-
-    public function detail($nim)
-    {
-            if (! session()->get('isLoggedIn')) {
-                return redirect()->to('/login');
-            }
-
-            $users = new Users();
-            $mahasiswa = $users->where('nim', $nim)->findAll();
-            $data = [
-                'title'   => 'Data Mahasiswa',
-                'content' => view('authentication/detail', ['mahasiswa' => $mahasiswa])
-            ];
-        
-        return view('authentication/template_02', $data);
-    }
 }

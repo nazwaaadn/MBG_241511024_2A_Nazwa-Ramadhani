@@ -8,6 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('/job', 'JobController::index');
 $routes->get('/login', 'AuthController::loginView');
+$routes->post('/auth/loginProcess', 'AuthController::loginProcess');
+$routes->post('/logout', 'AuthController::logout');
+$routes->get('/gudang', 'GudangController::index');
+$routes->get('/dapur', 'DapurController::index');
 
 // Semua route untuk admin
 $routes->group('', ['filter' => 'role:admin'], function($routes) {

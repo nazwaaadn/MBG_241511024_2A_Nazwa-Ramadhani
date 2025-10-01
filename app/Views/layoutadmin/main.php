@@ -15,18 +15,18 @@
 </head>
 <body class="sb-nav-fixed">
     <!-- Navbar -->
-    <?= $this->include('layouts/navbar') ?>
+    <?= $this->include('layoutAdmin/navbar') ?>
 
     <div id="layoutSidenav">
         <!-- Sidebar -->
-        <?= $this->include('layouts/sidebar') ?>
+        <?= $this->include('layoutAdmin/sidebar') ?>
 
         <!-- Konten Utama -->
         <div id="layoutSidenav_content">
             <?= $content ?>
 
             <!-- Footer -->
-            <?= $this->include('layouts/footer') ?>
+            <?= $this->include('layoutAdmin/footer') ?>
         </div>
     </div>
 
