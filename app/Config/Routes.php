@@ -20,7 +20,7 @@ $routes->get('/dapur', 'DapurController::index');
         $routes->post('store', 'BahanBaku::store');
         $routes->get('edit/(:segment)', 'BahanBaku::edit/$1');
         $routes->post('update/(:segment)', 'BahanBaku::update/$1');
-        $routes->get('delete/(:segment)', 'BahanBaku::delete/$1');
+        $routes->post('delete/(:segment)', 'BahanBaku::delete/$1');
     });
 
     $routes->get('admin', 'AdminController::index');

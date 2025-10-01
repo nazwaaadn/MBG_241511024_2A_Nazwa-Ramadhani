@@ -29,4 +29,13 @@ class BahanBaku extends Model
         return $this->findAll();
     }
 
+    public function deleteBahanBaku($id)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("
+            SELECT status FROM bahan_baku where status = 'kadaluarsa'
+        ", [$id]);
+        return $query->getResultArray();
+    }
+
 }

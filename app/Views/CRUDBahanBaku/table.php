@@ -15,8 +15,6 @@
         </tr>
     </table>
 
-    <input style="width: 915px;" type="text" id="search" class="form-control mb-3" placeholder="Cari student...">
-
     <table class="table caption-top">
         <thead>
             <tr>

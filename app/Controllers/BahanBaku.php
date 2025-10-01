@@ -148,11 +148,15 @@ class BahanBaku extends BaseController
         }
 
 
-    // public function delete($id)
-    // {
-    //     $model = new ModelsBahanBaku();
-    //     $model->where('id', $id)->delete();
+    public function delete($id)
+    {
+        $model = new ModelsBahanBaku();
+        $validationBahanBaku = $model->deleteBahanBaku($id);
+        if ($validationBahanBaku) {
+            $model->where('id', $id)->delete();
+        }
+        
 
-    //     return redirect()->to('/BahanBaku/display');
-    // }
+        return redirect()->to('/BahanBaku/display');
+    }
 }
