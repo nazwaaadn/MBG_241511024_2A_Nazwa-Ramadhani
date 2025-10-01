@@ -19,80 +19,80 @@ class BahanBaku extends BaseController
         return view('layoutadmin/main', $data);
     }
 
-    // public function add()
-    // {
-    //     $data = [
-    //         'title'   => 'Add Bahan Baku',
-    //         'content' => view('CRUDBahanBaku/add')
-    //     ];
-    //     return view('layoutadmin/main', $data);
-    // }
+    public function add()
+    {
+        $data = [
+            'title'   => 'Add Bahan Baku',
+            'content' => view('CRUDBahanBaku/add')
+        ];
+        return view('layoutadmin/main', $data);
+    }
 
-    // public function store()
-    // {
-    //     $BahanBakuModel = new ModelsBahanBaku();
+    public function store()
+    {
+        $BahanBakuModel = new ModelsBahanBaku();
 
-    //     $validationRules = [
-    //         'nama' => [
-    //             'rules'  => 'required',
-    //             'errors' => [
-    //                 'required'   => 'Nama wajib diisi'
-    //             ]
-    //         ],
-    //         'kategori' => [
-    //             'rules'  => 'required',
-    //             'errors' => [
-    //                 'required'   => 'Kategori wajib diisi'
-    //             ]
-    //         ],
-    //         'jumlah' => [
-    //             'rules'  => 'required',
-    //             'errors' => [
-    //                 'required'   => 'Jumlah wajib diisi'
-    //             ]
-    //         ],
-    //         'satuan' => [
-    //             'rules'  => 'required',
-    //             'errors' => [
-    //                 'required'   => 'Satuan wajib diisi'
-    //             ]
-    //         ],
-    //         'tanggal_masuk' => [
-    //             'rules'  => 'required',
-    //             'errors' => [
-    //                 'required'   => 'Tanggal Masuk wajib diisi'
-    //             ]
-    //         ],
-    //         'tanggal_kadaluarsa' => [
-    //             'rules'  => 'required',
-    //             'errors' => [
-    //                 'required'   => 'Tanggal Kadaluarsa wajib diisi'
-    //             ]
-    //         ],
-    //     ];
+        $validationRules = [
+            'nama' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required'   => 'Nama wajib diisi'
+                ]
+            ],
+            'kategori' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required'   => 'Kategori wajib diisi'
+                ]
+            ],
+            'jumlah' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required'   => 'Jumlah wajib diisi'
+                ]
+            ],
+            'satuan' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required'   => 'Satuan wajib diisi'
+                ]
+            ],
+            'tanggal_masuk' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required'   => 'Tanggal Masuk wajib diisi'
+                ]
+            ],
+            'tanggal_kadaluarsa' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required'   => 'Tanggal Kadaluarsa wajib diisi'
+                ]
+            ],
+        ];
 
-    //     if (! $this->validate($validationRules)) {
-    //         return redirect()->to('/BahanBaku/add')
-    //                         ->withInput()
-    //                         ->with('errors', $this->validator->getErrors());
-    //     }
+        if (! $this->validate($validationRules)) {
+            return redirect()->to('/BahanBaku/add')
+                            ->withInput()
+                            ->with('errors', $this->validator->getErrors());
+        }
 
-    //     //  Insert ke tabel BahanBaku
-    //     $BahanBakuData = [
-    //         'nama' => $this->request->getPost('nama'),
-    //         'kategori' => $this->request->getPost('kategori'),
-    //         'jumlah' => $this->request->getPost('jumlah'),
-    //         'satuan' => $this->request->getPost('satuan'),
-    //         'tanggal_masuk' => $this->request->getPost('tanggal_masuk'),
-    //         'tanggal_kadaluarsa' => $this->request->getPost('tanggal_kadaluarsa'),
-    //         'status' => 'Tersedia',
-    //     ];
+        //  Insert ke tabel BahanBaku
+        $BahanBakuData = [
+            'nama' => $this->request->getPost('nama'),
+            'kategori' => $this->request->getPost('kategori'),
+            'jumlah' => $this->request->getPost('jumlah'),
+            'satuan' => $this->request->getPost('satuan'),
+            'tanggal_masuk' => $this->request->getPost('tanggal_masuk'),
+            'tanggal_kadaluarsa' => $this->request->getPost('tanggal_kadaluarsa'),
+            'status' => 'Tersedia',
+        ];
 
-    //     $BahanBakuModel->insert($BahanBakuData);
-    //     session()->setFlashdata('success', '✅ Data mahasiswa berhasil ditambahkan!');
+        $BahanBakuModel->insert($BahanBakuData);
+        session()->setFlashdata('success', '✅ Data mahasiswa berhasil ditambahkan!');
 
-    //     return redirect()->to('/BahanBaku/display');
-    // }
+        return redirect()->to('/BahanBaku/display');
+    }
 
 
     // public function edit($student_id)
