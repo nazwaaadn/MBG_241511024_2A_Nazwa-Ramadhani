@@ -9,9 +9,9 @@
     <table class="mb-3">
         <tr>
             <th>
-                <h3 style="width: 820px">List Mahasiswa</h3>
+                <h3 style="width: 820px">List Bahan Baku</h3>
             </th>
-            <th><a href="<?= base_url('/students/add') ?>" class="btn btn-primary">Add Data</a></th>
+            <th><a href="<?= base_url('/BahanBaku/add') ?>" class="btn btn-primary">Add Data</a></th>
         </tr>
     </table>
 
@@ -20,21 +20,31 @@
     <table class="table caption-top">
         <thead>
             <tr>
-                <th scope="col" width="250px">Student ID</th>
-                <th scope="col" width="450px">Full Name</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Jumlah</th>
+                <th scope="col">satuan</th>
+                <th scope="col">Tanggal Masuk</th>
+                <th scope="col">Tanggal Kadaluarsa</th>
+                <th scope="col">Status</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody id="result">
-            <?php foreach ($students as $mhs): ?>
+            <?php foreach ($BahanBaku as $bb): ?>
                 <tr>
-                    <td><?= $mhs['student_id']; ?></td>
-                    <td><?= $mhs['full_name']; ?></td>
+                    <td><?= $bb['nama']; ?></td>
+                    <td><?= $bb['kategori']; ?></td>
+                    <td><?= $bb['jumlah']; ?></td>
+                    <td><?= $bb['satuan']; ?></td>
+                    <td><?= $bb['tanggal_masuk']; ?></td>
+                    <td><?= $bb['tanggal_kadaluarsa']; ?></td>
+                    <td><?= $bb['status']; ?></td>
+                    
                     <td>
                         <div class="d-flex gap-2">
-                            <a href="<?= base_url('/students/detail/' . $mhs['student_id']) ?>" class="btn btn-success">Detail</a>
-                            <a href="<?= base_url('/students/edit/' . $mhs['student_id']) ?>" class="btn btn-warning">Edit</a>
-                            <form action="<?= base_url('/students/delete/' . $mhs['student_id']) ?>" method="POST" class="deleteForm">
+                            <a href="<?= base_url('/BahanBaku/edit/' . $bb['id']) ?>" class="btn btn-warning">Edit</a>
+                            <form action="<?= base_url('/BahanBaku/delete/' . $bb['id']) ?>" method="POST" class="deleteForm">
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
                         </div>
@@ -47,13 +57,13 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+<!-- <script>
     $(document).ready(function() {
         $("#search").on("keyup", function() {
             let keyword = $(this).val();
 
             $.ajax({
-                url: "<?= base_url('students/search') ?>", // bikin method di controller
+                url: "<?= base_url('BahanBaku/search') ?>", // bikin method di controller
                 type: "GET",
                 data: {
                     keyword: keyword
@@ -64,7 +74,7 @@
             });
         });
     });
-</script>
+</script> -->
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
