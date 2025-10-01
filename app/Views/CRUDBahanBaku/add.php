@@ -62,7 +62,7 @@
 
             <div class="mb-3">
                 <label for="Tanggal Masuk" class="form-label">Tanggal Masuk</label>
-                <input type="text" 
+                <input type="date" 
                        class="form-control <?= session('errors.tanggal_masuk') ? 'is-invalid' : '' ?>" 
                        id="Tanggal Masuk" 
                        name="tanggal_masuk" 
@@ -76,7 +76,7 @@
 
             <div class="mb-3">
                 <label for="Tanggal Kadaluarsa" class="form-label">Tanggal Kadaluarsa</label>
-                <input type="text" 
+                <input type="date" 
                        class="form-control <?= session('errors.tanggal_kadaluarsa') ? 'is-invalid' : '' ?>" 
                        id="Tanggal Kadaluarsa" 
                        name="tanggal_kadaluarsa" 

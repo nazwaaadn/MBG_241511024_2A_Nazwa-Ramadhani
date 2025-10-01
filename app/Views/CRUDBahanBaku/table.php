@@ -33,6 +33,7 @@
                 <tr>
                     <td><?= $bb['nama']; ?></td>
                     <td><?= $bb['kategori']; ?></td>
+                    
                     <td><?= $bb['jumlah']; ?></td>
                     <td><?= $bb['satuan']; ?></td>
                     <td><?= $bb['tanggal_masuk']; ?></td>

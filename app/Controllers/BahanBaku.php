@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\BahanBaku as ModelsBahanBaku;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\I18n\Time;
 
 class BahanBaku extends BaseController
 {
@@ -78,15 +79,27 @@ class BahanBaku extends BaseController
         }
 
         //  Insert ke tabel BahanBaku
+        $tanggal_kadaluarsa = $this->request->getPost('tanggal_kadaluarsa');
+        $status = 'tersedia';
+        $now = Time::now();
+        $hari_ini = $now->format('Y-m-d');
+        if ($tanggal_kadaluarsa == $hari_ini) {
+            $status = 'kadaluarsa';
+        } elseif ($tanggal_kadaluarsa - $hari_ini <= 3) {
+            $status = 'segera Kadaluarsa';
+        } else {
+           $status = 'Tersedia';
+        }
         $BahanBakuData = [
             'nama' => $this->request->getPost('nama'),
             'kategori' => $this->request->getPost('kategori'),
             'jumlah' => $this->request->getPost('jumlah'),
             'satuan' => $this->request->getPost('satuan'),
             'tanggal_masuk' => $this->request->getPost('tanggal_masuk'),
-            'tanggal_kadaluarsa' => $this->request->getPost('tanggal_kadaluarsa'),
-            'status' => 'Tersedia',
+            'tanggal_kadaluarsa' => $tanggal_kadaluarsa,
+            'status' => $status,
         ];
+        
 
         $BahanBakuModel->insert($BahanBakuData);
         session()->setFlashdata('success', '✅ Data mahasiswa berhasil ditambahkan!');
