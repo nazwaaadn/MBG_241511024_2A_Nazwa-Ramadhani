@@ -34,9 +34,14 @@ class BahanBaku extends Model
     {
         $db = \Config\Database::connect();
         $query = $db->query("
-            SELECT status FROM bahan_baku where status = 'kadaluarsa'
+            SELECT status FROM bahan_baku WHERE id = ? LIMIT 1
         ", [$id]);
-        return $query->getResultArray();
+
+        $result = $query->getRowArray();
+
+        // return true kalau status = kadaluarsa
+        return $result && $result['status'] === 'kadaluarsa';
     }
+
 
 }

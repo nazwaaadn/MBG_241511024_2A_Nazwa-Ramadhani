@@ -5,12 +5,19 @@
     }
 </style>
 
-<div class="container mt-0">
+<div class="container mt-3'">
 
     <!-- Notifikasi Flash -->
     <?php if (session()->getFlashdata('success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= session()->getFlashdata('success') ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
+    <?php if (session()->getFlashdata('error')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= session()->getFlashdata('error') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php endif; ?>
@@ -63,7 +70,11 @@
                                     <!-- Delete -->
                                     <form action="<?= base_url('/BahanBaku/delete/' . $bb['id']) ?>" 
                                           method="POST" class="deleteForm">
-                                        <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" 
+                                            data-nama="<?= $bb['nama']; ?>"
+                                            data-kategori="<?= $bb['kategori']; ?>">
+                                            Hapus
+                                        </button>
                                     </form>
                                 </div>
                             </td>
@@ -86,8 +97,18 @@
     document.querySelectorAll('.deleteForm').forEach(form => {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
+
+            // ambil data dari button
+            let btn = form.querySelector('button[type="submit"]');
+            let nama = btn.getAttribute('data-nama');
+            let kategori = btn.getAttribute('data-kategori');
+            let stok = btn.getAttribute('data-stok');
+
             Swal.fire({
                 title: 'Apakah yakin ingin menghapus data ini?',
+                html: `
+                    <p><b>Nama Bahan:</b> ${nama} <b>Kategori:</b> ${kategori}</p>
+                `,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Ya, hapus',
@@ -100,6 +121,7 @@
         });
     });
 </script>
+
 <script>
     $(document).ready(function() {
         $("#search").on("keyup", function() {

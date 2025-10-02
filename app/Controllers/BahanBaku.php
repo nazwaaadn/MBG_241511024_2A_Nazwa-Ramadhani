@@ -164,11 +164,16 @@ class BahanBaku extends BaseController
     public function delete($id)
     {
         $model = new ModelsBahanBaku();
-        $validationBahanBaku = $model->deleteBahanBaku($id);
-        if ($validationBahanBaku) {
+
+        // cek status bahan baku dulu
+        $canDelete = $model->deleteBahanBaku($id);
+
+        if ($canDelete) {
             $model->where('id', $id)->delete();
+            session()->setFlashdata('success', 'Data berhasil dihapus');
+        } else {
+            session()->setFlashdata('error', 'Data hanya bisa dihapus jika status = kadaluarsa');
         }
-        
 
         return redirect()->to('/BahanBaku/display');
     }

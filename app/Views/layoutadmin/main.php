@@ -7,11 +7,25 @@
     <link href="<?= base_url('Admin/css/styles.css') ?>" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-        .container {
-            padding: 50px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .custom-card {
+            box-shadow: 0 4px 18px rgba(0, 0, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            }
+            .custom-card h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            }
+            .form-card {
+            padding: 40px;
+            }
+            .outer-container {
+            padding: 40px; /* jarak luar antara card dan tepi layar/container */
+            }
+        </style>
 </head>
 <body class="sb-nav-fixed">
     <!-- Navbar -->
