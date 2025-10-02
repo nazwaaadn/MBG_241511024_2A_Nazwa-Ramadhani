@@ -8,7 +8,7 @@
     background-color: #f8f9fa;
   }
   .detail-card {
-    width: 500px;
+    width: 600px;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     border: 1px solid #0d6efd;
@@ -56,43 +56,46 @@
 
 <div class="detail-card">
   <div class="detail-header">
-    <h4><i class="bi bi-box-seam"></i> Detail Bahan Baku</h4>
+    <h4><i class="bi bi-card-list"></i> Detail Permintaan</h4>
   </div>
   <div class="detail-body">
     <div class="detail-item">
-      <span class="label">Nama:</span> <?= esc($bahan_baku['nama']); ?>
+      <span class="label">Pemohon:</span> <?= esc($permintaan['nama_pemohon']); ?>
     </div>
     <div class="detail-item">
-      <span class="label">Kategori:</span> <?= esc($bahan_baku['kategori']); ?>
+      <span class="label">Tanggal Masak:</span> <?= esc($permintaan['tgl_masak']); ?>
     </div>
     <div class="detail-item">
-      <span class="label">Jumlah:</span> <?= esc($bahan_baku['jumlah']); ?>
+      <span class="label">Menu Makan:</span> <?= esc($permintaan['menu_makan']); ?>
     </div>
     <div class="detail-item">
-      <span class="label">Satuan:</span> <?= esc($bahan_baku['satuan']); ?>
+      <span class="label">Jumlah Porsi:</span> <?= esc($permintaan['jumlah_porsi']); ?>
     </div>
     <div class="detail-item">
-      <span class="label">Tanggal Masuk:</span> <?= esc($bahan_baku['tanggal_masuk']); ?>
-    </div>
-    <div class="detail-item">
-      <span class="label">Tanggal Kadaluarsa:</span> <?= esc($bahan_baku['tanggal_kadaluarsa']); ?>
-    </div>
-    <div class="detail-item">
-      <span class="label">Status:</span> 
-      <?php if ($bahan_baku['status'] == 'tersedia'): ?>
-        <span class="status tersedia">Tersedia</span>
-      <?php elseif ($bahan_baku['status'] == 'segera_kadaluarsa'): ?>
-        <span class="status segera_kadaluarsa">Segera Kadaluarsa</span>
-      <?php elseif ($bahan_baku['status'] == 'kadaluarsa'): ?>
-        <span class="status kadaluarsa">Kadaluarsa</span>
-      <?php else: ?>
-        <span class="status bg-secondary text-white">-</span>
-      <?php endif; ?>
+      <span class="label">Status Permintaan:</span> 
+      <span class="status <?= $permintaan['status'] == 'menunggu' ? 'segera_kadaluarsa' : '' ?>">
+        <?= ucfirst($permintaan['status']); ?>
+      </span>
     </div>
 
-    <!-- Tombol Back -->
+    <hr>
+
+    <h5><i class="bi bi-box-seam"></i> Detail Bahan Baku</h5>
+    <?php foreach($permintaan['bahan'] as $bahan): ?>
+      <div class="detail-item">
+        <span class="label">Nama Bahan:</span> <?= esc($bahan['nama']); ?>
+      </div>
+      <div class="detail-item">
+        <span class="label">Kategori:</span> <?= esc($bahan['kategori']); ?>
+      </div>
+      <div class="detail-item">
+        <span class="label">Jumlah Diminta:</span> <?= esc($bahan['jumlah_diminta']); ?>
+      </div>
+      <hr>
+    <?php endforeach; ?>
+
     <div class="text-center mt-4">
-      <a href="<?= base_url('/BahanBaku/display') ?>" class="btn btn-secondary">
+      <a href="<?= base_url('/Permintaan') ?>" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Kembali
       </a>
     </div>

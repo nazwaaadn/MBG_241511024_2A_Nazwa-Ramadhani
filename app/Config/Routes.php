@@ -12,6 +12,9 @@ $routes->post('/auth/loginProcess', 'AuthController::loginProcess');
 $routes->post('/logout', 'AuthController::logout');
 $routes->get('/gudang', 'GudangController::index');
 $routes->get('/dapur', 'DapurController::index');
+$routes->get('permintaandetail/(:segment)', 'DapurController::detail/$1');
+$routes->get('addPermintaan', 'DapurController::add');
+$routes->post('/addPermintaan/store', 'DapurController::store');
 
     // Bahan Baku
     $routes->group('BahanBaku', function($routes) {

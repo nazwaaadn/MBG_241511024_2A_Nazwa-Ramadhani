@@ -27,4 +27,61 @@ class Permintaan extends Model
 
     }
 
+    public function getPermintaanByUser($userId)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("
+            SELECT p.id, p.pemohon_id, u.name AS nama_pemohon, 
+                p.tgl_masak, p.menu_makan, p.jumlah_porsi, p.status
+            FROM permintaan p
+            JOIN user u ON u.id = p.pemohon_id
+            WHERE p.pemohon_id = ?
+        ", [$userId]);
+
+        return $query->getResultArray();
+    }
+
+    public function getPermintaanByUserMenunggu($userId)
+{
+    $db = \Config\Database::connect();
+    $query = $db->query("
+        SELECT p.id,
+               p.tgl_masak, p.menu_makan, p.status
+        FROM permintaan p
+        JOIN user u ON u.id = p.pemohon_id
+        WHERE p.pemohon_id = ? AND p.status = 'menunggu'
+    ", [$userId]);
+
+    return $query->getResultArray();
+}
+
+public function getPermintaanByUserDisetujui($userId)
+{
+    $db = \Config\Database::connect();
+    $query = $db->query("
+        SELECT p.id,
+               p.tgl_masak, p.menu_makan, p.status
+        FROM permintaan p
+        JOIN user u ON u.id = p.pemohon_id
+        WHERE p.pemohon_id = ? AND p.status = 'disetujui'
+    ", [$userId]);
+
+    return $query->getResultArray();
+}
+
+public function getPermintaanByUserDitolak($userId)
+{
+    $db = \Config\Database::connect();
+    $query = $db->query("
+        SELECT p.id,
+               p.tgl_masak, p.menu_makan, p.status
+        FROM permintaan p
+        JOIN user u ON u.id = p.pemohon_id
+        WHERE p.pemohon_id = ? AND p.status = 'ditolak'
+    ", [$userId]);
+
+    return $query->getResultArray();
+}
+
+
 }

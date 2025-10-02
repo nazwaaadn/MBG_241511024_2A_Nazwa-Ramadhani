@@ -18,6 +18,11 @@ class BahanBaku extends Model
         return $this->findAll();
     }
 
+    public function getBahanTersedia()
+    {
+        return $this->where('status', 'tersedia')->findAll();
+    }
+
     public function getTotalBahanBaku()
     {
         $db = \Config\Database::connect();

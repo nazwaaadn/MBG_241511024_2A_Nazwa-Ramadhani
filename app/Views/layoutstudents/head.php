@@ -5,6 +5,8 @@
   <meta name="description" content="">
   <meta name="author" content="TemplateMo">
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <title>Akademik</title>
 
@@ -15,46 +17,7 @@
   <link rel="stylesheet" href="<?= base_url('Student/assets/css/fontawesome.css') ?>">
   <link rel="stylesheet" href="<?= base_url('Student/assets/css/templatemo-finance-business.css') ?>">
   <link rel="stylesheet" href="<?= base_url('Student/assets/css/owl.css') ?>">
-  <style>
-    .card-title,
-    .card-text {
-      writing-mode: horizontal-tb !important;
-      text-orientation: mixed !important;
-      white-space: normal !important;
-    }
-
-    .card-body {
-      display: block !important;
-    }
-
-    #tabs article {
-      writing-mode: vertical-lr;
-      /* atau */
-      transform: rotate(90deg);
-      /* atau */
-      display: inline-block;
-      width: auto;
-    }
-
-    .tabs-content article {
-      writing-mode: horizontal-tb !important;
-      transform: none !important;
-      display: block !important;
-      width: 100% !important;
-    }
-
-    .tabs-content article .card {
-      display: block !important;
-      width: 100% !important;
-    }
-
-    .tabs-content article .card-title,
-    .tabs-content article .card-text {
-      white-space: normal !important;
-      writing-mode: horizontal-tb !important;
-      text-orientation: mixed !important;
-    }
-  </style>
+  
   <!--
 
 Finance Business TemplateMo

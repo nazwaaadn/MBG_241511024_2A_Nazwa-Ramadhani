@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <h2>ALPENCOURSE</h2>
+          <h2>ALPENKITCHEN</h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
               <a class="nav-link" href="<?= base_url('/home') ?>">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('/addnewcourse') ?>">Courses</a>
+              <a class="nav-link" href="<?= base_url('/addPermintaan') ?>">Permintaan</a>
             </li>
             <li class="nav-item">
               <form action="<?= base_url('/logout') ?>" method="POST" id="logoutForm">
