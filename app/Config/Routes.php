@@ -21,6 +21,7 @@ $routes->get('/dapur', 'DapurController::index');
         $routes->get('edit/(:segment)', 'BahanBaku::edit/$1');
         $routes->post('update/(:segment)', 'BahanBaku::update/$1');
         $routes->post('delete/(:segment)', 'BahanBaku::delete/$1');
+        $routes->get('search', 'BahanBaku::search');
     });
 
     $routes->get('admin', 'AdminController::index');

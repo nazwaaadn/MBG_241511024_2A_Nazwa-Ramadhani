@@ -11,6 +11,7 @@ class BahanBaku extends Model
     protected $allowedFields = ['nama', 'kategori', 'jumlah', 'satuan', 'tanggal_masuk', 'tanggal_kadaluarsa', 'status'];
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
+    protected $returnType = 'array';
 
     // Custom get
     // public function getStudents()

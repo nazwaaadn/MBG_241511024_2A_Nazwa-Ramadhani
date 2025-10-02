@@ -1,4 +1,13 @@
-<div class="container">
+<style>
+    .custom-box {
+        box-shadow: 0 4px 12px rgba(13, 14, 14, 0.15); /* shadow biru lembut */
+        border-radius: 8px;
+    }
+</style>
+
+<div class="container mt-0">
+
+    <!-- Notifikasi Flash -->
     <?php if (session()->getFlashdata('success')): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= session()->getFlashdata('success') ?>
@@ -6,57 +15,92 @@
         </div>
     <?php endif; ?>
 
-    <table class="mb-3">
-        <tr>
-            <th>
-                <h3 style="width: 820px">List Bahan Baku</h3>
-            </th>
-            <th><a href="<?= base_url('/BahanBaku/add') ?>" class="btn btn-primary">Add Data</a></th>
-        </tr>
-    </table>
+    <!-- Judul dalam box -->
+    <div class="card custom-box mb-4 p-2">
+        <div class="card-body d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">List Bahan Baku</h3>
+            <a href="<?= base_url('/BahanBaku/add') ?>" class="btn btn-success">+ Add Data</a>
+        </div>
+    </div>
 
-    <table class="table caption-top">
-        <thead>
-            <tr>
-                <th scope="col">Nama</th>
-                <th scope="col">Kategori</th>
-                <th scope="col">Jumlah</th>
-                <th scope="col">satuan</th>
-                <th scope="col">Tanggal Masuk</th>
-                <th scope="col">Tanggal Kadaluarsa</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody id="result">
-            <?php foreach ($BahanBaku as $bb): ?>
-                <tr>
-                    <td><?= $bb['nama']; ?></td>
-                    <td><?= $bb['kategori']; ?></td>
-                    
-                    <td><?= $bb['jumlah']; ?></td>
-                    <td><?= $bb['satuan']; ?></td>
-                    <td><?= $bb['tanggal_masuk']; ?></td>
-                    <td><?= $bb['tanggal_kadaluarsa']; ?></td>
-                    <td><?= $bb['status']; ?></td>
-                    
-                    <td>
-                        <div class="d-flex gap-2">
-                            <a href="<?= base_url('/BahanBaku/edit/' . $bb['id']) ?>" class="btn btn-warning">Edit</a>
-                            <form action="<?= base_url('/BahanBaku/delete/' . $bb['id']) ?>" method="POST" class="deleteForm">
-                                <button class="btn btn-danger" type="submit">Delete</button>
-                            </form>
-                        </div>
-                    </td>
+    <!-- Table dalam box -->
+    <div class="card custom-box p-3">
+        <div class="card-body">
+             <input type="text" id="search" class="form-control mb-4" placeholder="Cari Bahan Baku...">
+            <table class="table table-hover mb-0" >
+                <thead class="bg-white">
+                    <tr>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Kategori</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" style="width: 220px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="result">
+                    <?php foreach ($bahan_baku as $bb): ?>
+                        <tr>
+                            <td><?= $bb['nama']; ?></td>
+                            <td><?= $bb['kategori']; ?></td>
+                            <td>
+                                <?php if ($bb['status'] == 'tersedia'): ?>
+                                    <span class="badge bg-success"><?= $bb['status']; ?></span>
+                                <?php elseif ($bb['status'] == 'segera_kadaluarsa'): ?>
+                                    <span class="badge bg-warning text-dark">Segera Kadaluarsa</span>
+                                <?php elseif ($bb['status'] == 'kadaluarsa'): ?>
+                                    <span class="badge bg-danger"><?= $bb['status']; ?></span>
+                                <?php else: ?>
+                                    <span class="badge bg-secondary"><?= $bb['status']; ?></span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <!-- Detail -->
+                                    <a href="<?= base_url('/BahanBaku/detail/' . $bb['id']) ?>" 
+                                       class="btn btn-sm btn-info">Detail</a>
+                                    <!-- Edit -->
+                                    <a href="<?= base_url('/BahanBaku/edit/' . $bb['id']) ?>" 
+                                       class="btn btn-sm btn-warning">Edit</a>
+                                    <!-- Delete -->
+                                    <form action="<?= base_url('/BahanBaku/delete/' . $bb['id']) ?>" 
+                                          method="POST" class="deleteForm">
+                                        <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.querySelectorAll('.deleteForm').forEach(form => {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Apakah yakin ingin menghapus data ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+</script>
+<script>
     $(document).ready(function() {
         $("#search").on("keyup", function() {
             let keyword = $(this).val();
@@ -73,27 +117,4 @@
             });
         });
     });
-</script> -->
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.querySelectorAll('.deleteForm').forEach(form => {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            Swal.fire({
-                title: 'Are you sure you want to delete?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
-            });
-        });
-    });
 </script>
-
-
-</html>
