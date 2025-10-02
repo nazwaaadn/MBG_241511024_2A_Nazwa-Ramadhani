@@ -49,14 +49,19 @@
                             <td><?= $bb['nama']; ?></td>
                             <td><?= $bb['kategori']; ?></td>
                             <td>
-                                <?php if ($bb['status'] == 'tersedia'): ?>
-                                    <span class="badge bg-success"><?= $bb['status']; ?></span>
-                                <?php elseif ($bb['status'] == 'segera_kadaluarsa'): ?>
-                                    <span class="badge bg-warning text-dark">Segera Kadaluarsa</span>
-                                <?php elseif ($bb['status'] == 'kadaluarsa'): ?>
-                                    <span class="badge bg-danger"><?= $bb['status']; ?></span>
-                                <?php else: ?>
-                                    <span class="badge bg-secondary"><?= $bb['status']; ?></span>
+                                <?php if ($bb['jumlah'] == 0): ?>
+                                    <span class="badge bg-secondary">Habis</span>
+                                <?php else:  ?>
+                                    <?php if ($bb['status'] == 'tersedia'): ?>
+                                        <span class="badge bg-success"><?= $bb['status']; ?></span>
+                                    <?php elseif ($bb['status'] == 'segera_kadaluarsa'): ?>
+                                        <span class="badge bg-warning text-dark">Segera Kadaluarsa</span>
+                                    <?php elseif ($bb['status'] == 'kadaluarsa'): ?>
+                                        <span class="badge bg-danger"><?= $bb['status']; ?></span>
+                                
+                                    <?php else: ?>
+                                        <span class="badge bg-secondary"><?= $bb['status']; ?></span>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                             </td>
                             <td>

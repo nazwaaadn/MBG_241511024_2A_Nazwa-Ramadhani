@@ -16,6 +16,7 @@ $routes->get('/dapur', 'DapurController::index');
     // Mahasiswa
         $routes->group('BahanBaku', function($routes) {
         $routes->get('display', 'BahanBaku::index');
+        $routes->get('detail/(:segment)', 'BahanBaku::detail/$1');
         $routes->get('add', 'BahanBaku::add');
         $routes->post('store', 'BahanBaku::store');
         $routes->get('edit/(:segment)', 'BahanBaku::edit/$1');

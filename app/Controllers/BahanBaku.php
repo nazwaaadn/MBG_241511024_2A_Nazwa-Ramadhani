@@ -20,6 +20,24 @@ class BahanBaku extends BaseController
         return view('layoutadmin/main', $data);
     }
 
+    public function detail($id)
+{
+    $model = new ModelsBahanBaku();
+    $bahan_baku = $model->find($id); // ambil 1 data by id
+
+    if (!$bahan_baku) {
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Data dengan ID $id tidak ditemukan");
+    }
+
+    $data = [
+        'title'   => 'Detail Bahan Baku',
+        'content' => view('CRUDBahanBaku/detail', ['bahan_baku' => $bahan_baku])
+    ];
+
+    return view('layoutadmin/main', $data);
+}
+
+
     public function add()
     {
         $data = [
@@ -123,42 +141,52 @@ class BahanBaku extends BaseController
         return view('layoutadmin/main', $data);
     }
 
-        public function update($id)
-        {
-            $BahanBakuModel = new ModelsBahanBaku();
+    public function update($id)
+{
+    $BahanBakuModel = new ModelsBahanBaku();
 
-            $validationRules = [
-                'jumlah' => [
-                    'rules'  => 'required',
-                    'errors' => [
-                        'required'   => 'Jumlah wajib diisi'
-                    ]
-                ]
-            ];
+    $validationRules = [
+        'jumlah' => [
+            'rules'  => 'required|numeric',
+            'errors' => [
+                'required' => 'Jumlah wajib diisi',
+                'numeric'  => 'Jumlah harus berupa angka'
+            ]
+        ]
+    ];
 
-            if (! $this->validate($validationRules)) {
-                return redirect()->to('/BahanBaku/edit/'.$id)
-                                ->withInput()
-                                ->with('errors', $this->validator->getErrors());
-            }
+    if (! $this->validate($validationRules)) {
+        return redirect()->to('/BahanBaku/edit/'.$id)
+                        ->withInput()
+                        ->with('errors', $this->validator->getErrors());
+    }
 
-            // 🔎 Cari data BahanBaku untuk dapetin user_id
-            $BahanBaku = $BahanBakuModel->find($id);
-            if (!$BahanBaku) {
-                throw new \CodeIgniter\Exceptions\PageNotFoundException("Bahan Baku dengan ID $id tidak ditemukan");
-            }
-            $id = $BahanBaku['id'];
+    // 🔎 Cari data BahanBaku untuk dapetin user_id
+    $BahanBaku = $BahanBakuModel->find($id);
+    if (!$BahanBaku) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException("Bahan Baku dengan ID $id tidak ditemukan");
+    }
 
-            // 2️⃣ Update ke tabel BahanBaku
-            $BahanBakuData = [
-                'jumlah' => $this->request->getPost('jumlah'),
-            ];
+    $jumlahInput = (int) $this->request->getPost('jumlah');
 
-            $BahanBakuModel->update($id, $BahanBakuData);
-            session()->setFlashdata('success', '✅ Data Bahan Baku berhasil Diedit!');
+    // 🚫 Tolak kalau stok < 0
+    if ($jumlahInput < 0) {
+        return redirect()->to('/BahanBaku/edit/'.$id)
+                        ->withInput()
+                        ->with('errors', ['jumlah' => 'Jumlah tidak boleh kurang dari 0']);
+    }
 
-            return redirect()->to('/BahanBaku/display');
-        }
+    // ✅ Update ke tabel BahanBaku
+    $BahanBakuData = [
+        'jumlah' => $jumlahInput,
+    ];
+
+    $BahanBakuModel->update($id, $BahanBakuData);
+    session()->setFlashdata('success', '✅ Data Bahan Baku berhasil diedit!');
+
+    return redirect()->to('/BahanBaku/display');
+}
+
 
 
     public function delete($id)
