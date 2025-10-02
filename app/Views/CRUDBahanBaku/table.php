@@ -5,7 +5,7 @@
     }
 </style>
 
-<div class="container mt-3'">
+<div class="container mt-3">
 
     <!-- Notifikasi Flash -->
     <?php if (session()->getFlashdata('success')): ?>

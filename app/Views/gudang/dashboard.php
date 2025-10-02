@@ -36,7 +36,7 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">
-                        <h2>50</h2>
+                        <h2><?php echo $totalBahanBaku; ?></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link">Jumlah Bahan Baku</a>
@@ -46,7 +46,7 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">
-                        <h2>100</h2>
+                        <h2><?php echo $totalTersedia; ?></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link">Bahan Baku yang tersedia</a>
@@ -56,7 +56,7 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-success text-white mb-4">
                     <div class="card-body">
-                        <h2>100</h2>
+                        <h2><?php echo $totalKadaluarsa; ?></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link">Bahan Baku yang Kadaluarsa</a>

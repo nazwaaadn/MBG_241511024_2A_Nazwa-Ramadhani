@@ -13,8 +13,8 @@ $routes->post('/logout', 'AuthController::logout');
 $routes->get('/gudang', 'GudangController::index');
 $routes->get('/dapur', 'DapurController::index');
 
-    // Mahasiswa
-        $routes->group('BahanBaku', function($routes) {
+    // Bahan Baku
+    $routes->group('BahanBaku', function($routes) {
         $routes->get('display', 'BahanBaku::index');
         $routes->get('detail/(:segment)', 'BahanBaku::detail/$1');
         $routes->get('add', 'BahanBaku::add');
@@ -23,6 +23,13 @@ $routes->get('/dapur', 'DapurController::index');
         $routes->post('update/(:segment)', 'BahanBaku::update/$1');
         $routes->post('delete/(:segment)', 'BahanBaku::delete/$1');
         $routes->get('search', 'BahanBaku::search');
+    });
+
+    // Permintaan
+    $routes->group('Permintaan', function($routes) {
+        $routes->get('display', 'PermintaanController::index');
+        $routes->get('search', 'PermintaanController::search');
+        $routes->post('updateStatus', 'PermintaanController::updateStatus');
     });
 
     $routes->get('admin', 'AdminController::index');

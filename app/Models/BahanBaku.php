@@ -13,22 +13,32 @@ class BahanBaku extends Model
     protected $updatedField  = 'updated_at';
     protected $returnType = 'array';
 
-    // Custom get
-    // public function getStudents()
-    // {
-    //     $db = \Config\Database::connect();
-    //     $query = $db->query("
-    //         SELECT s.student_id, s.entry_year, u.full_name
-    //         FROM students s
-    //         JOIN users u ON s.user_id = u.user_id where u.role = 'student'
-    //     ");
-    //     return $query->getResultArray();
-    // }
-
     public function getBahanBaku()
     {
         return $this->findAll();
     }
+
+    public function getTotalBahanBaku()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT COUNT(*) as total FROM bahan_baku");
+        return $query->getRow()->total; // ambil nilai COUNT(*) nya
+    }
+
+    public function getTotalBahanBakuTersedia()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT COUNT(*) as total FROM bahan_baku WHERE status = 'tersedia'");
+        return $query->getRow()->total;
+    }
+
+    public function getTotalBahanBakuKadaluarsa()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT COUNT(*) as total FROM bahan_baku WHERE status = 'kadaluarsa'");
+        return $query->getRow()->total;
+    }
+
 
     public function deleteBahanBaku($id)
     {
@@ -42,6 +52,4 @@ class BahanBaku extends Model
         // return true kalau status = kadaluarsa
         return $result && $result['status'] === 'kadaluarsa';
     }
-
-
 }

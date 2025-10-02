@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BahanBaku;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class GudangController extends BaseController
@@ -18,8 +19,13 @@ class GudangController extends BaseController
         if ($session->get('role') !== 'gudang') {
             return redirect()->to('/login');
         }
+
+        $model = new BahanBaku();
+        $totalBahanBaku = $model->getTotalBahanBaku();
+        $totalKadaluarsa = $model->getTotalBahanBakuKadaluarsa();
+        $totalTersedia = $model->getTotalBahanBakuTersedia();
         $data = [
-            'content' => view('gudang/dashboard'),
+            'content' => view('gudang/dashboard', ['totalBahanBaku' => $totalBahanBaku, 'totalKadaluarsa' => $totalKadaluarsa, 'totalTersedia' => $totalTersedia]),
         ];
         return view('layoutadmin/main', $data);
     }
