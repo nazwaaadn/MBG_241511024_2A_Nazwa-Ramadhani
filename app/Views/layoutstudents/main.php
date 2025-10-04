@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+    .body {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
 <?= $this->include('layoutstudents/head') ?>
 <body>
     <!-- ***** Preloader Start ***** -->

@@ -66,7 +66,7 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-danger text-white mb-4">
                     <div class="card-body">
-                        <h2>100</h2>
+                        <h2><?php echo $totalPermintaan; ?></h2>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <a class="small text-white stretched-link">Total Permintaan</a>
@@ -78,22 +78,34 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Fitur Gudang</li>
         </ol>
-        <a href="bahanbaku.html" class="text-decoration-none">
-            <div class="card custom-card">
-                <div class="card-body text-center">
-                    <!-- Icon di atas -->
-                    <i class="bi bi-box-seam card-icon"></i>
+        <div class="d-flex flex-wrap gap-3 justify-content-start">
+    <!-- Card pertama -->
+    <div class="card custom-card" style="width: 300px;">
+        <div class="card-body text-center">
+            <i class="bi bi-box-seam card-icon" style="font-size: 2rem;"></i>
+            <h5 class="card-title mt-2 mb-2">Kelola data Bahan baku</h5>
+            <p class="card-text">
+                Gunakan menu ini untuk menambah, mengubah, dan menghapus data bahan baku yang tersedia.
+            </p>
+            <a href="<?= base_url('/BahanBaku/display') ?>" class="btn btn-primary mt-2">Masuk</a>
+        </div>
+    </div>
 
-                    <!-- Judul -->
-                    <h5 class="card-title mb-2">Kelola data Bahan baku</h5>
+    <!-- Card kedua -->
+    <div class="card custom-card" style="width: 300px;">
+        <div class="card-body text-center">
+            <i class="bi bi-gear card-icon" style="font-size: 2rem;"></i>
+            <h5 class="card-title mt-2 mb-2">Permintaan</h5>
+            <p class="card-text">
+                Gunakan menu ini untuk melihat daftar Permintaan dan Memberi Konfirmasi status Permintaan.
+            </p>
+            <a href="<?= base_url('/Permintaan/display') ?>" class="btn btn-primary mt-2">Masuk</a>
+        </div>
+    </div>
+</div>
 
-                    <!-- Deskripsi -->
-                    <p class="card-text">
-                        Gunakan menu ini untuk menambah, mengubah, dan menghapus data bahan baku yang tersedia.
-                    </p>
-                </div>
-            </div>
-        </a>
+
+
 
     </div>
 </main>

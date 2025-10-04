@@ -32,6 +32,7 @@ $routes->post('/addPermintaan/store', 'DapurController::store');
     $routes->group('Permintaan', function($routes) {
         $routes->get('display', 'PermintaanController::index');
         $routes->get('search', 'PermintaanController::search');
+        $routes->get('detail/(:segment)', 'PermintaanController::detail/$1');
         $routes->post('updateStatus', 'PermintaanController::updateStatus');
     });
 

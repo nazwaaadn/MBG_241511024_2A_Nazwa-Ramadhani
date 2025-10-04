@@ -8,7 +8,7 @@ class Permintaan extends Model
 {
     protected $table = 'permintaan';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['pemohon_id', 'tgl_masak', 'menu_makan', 'jumlah_porsi', 'status'];
+    protected $allowedFields = ['pemohon_id', 'tgl_masak', 'menu_makan', 'jumlah_porsi', 'status', 'alasan_ditolak'];
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $returnType = 'array';
@@ -69,6 +69,11 @@ public function getPermintaanByUserDisetujui($userId)
     return $query->getResultArray();
 }
 
+public function countPermintaan()
+    {
+        return $this->where('status', 'menunggu')->countAllResults();
+    }
+
 public function getPermintaanByUserDitolak($userId)
 {
     $db = \Config\Database::connect();
@@ -82,6 +87,5 @@ public function getPermintaanByUserDitolak($userId)
 
     return $query->getResultArray();
 }
-
 
 }

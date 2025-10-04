@@ -65,7 +65,8 @@
                             </td>
                             <td>
                                 <div class="d-flex gap-2">
-
+                                    <a href="<?= base_url('/Permintaan/detail/' . $p['id']) ?>" 
+                                       class="btn btn-sm btn-info">Detail</a>
                                     <!-- Edit Status pakai modal -->
                                     <button class="btn btn-sm btn-warning editStatusBtn"
                                         data-id="<?= $p['id']; ?>"
@@ -82,33 +83,41 @@
 
             <!-- Modal Edit Status -->
             <div class="modal fade" id="editStatusModal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <form id="editStatusForm" method="post" action="<?= base_url('Permintaan/updateStatus') ?>">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Edit Status Permintaan</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <input type="hidden" name="id" id="permintaanId">
+    <div class="modal-dialog">
+        <form id="editStatusForm" method="post" action="<?= base_url('Permintaan/updateStatus') ?>">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Status Permintaan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="permintaanId">
 
-                                <div class="mb-3">
-                                    <label for="status" class="form-label">Status</label>
-                                    <select name="status" id="status" class="form-select" required>
-                                        <option value="menunggu">Menunggu</option>
-                                        <option value="disetujui">Disetujui</option>
-                                        <option value="ditolak">Ditolak</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="form-floating mb-3">
+                        <select name="status" id="status" class="form-select" required>
+                            <option value="menunggu">Menunggu</option>
+                            <option value="disetujui">Disetujui</option>
+                            <option value="ditolak">Ditolak</option>
+                        </select>
+                        <label for="status">Status</label>
+                    </div>
+
+                    <!-- Input alasan ditolak (hidden default) -->
+<div class="form-floating mb-3" id="alasanDitolakContainer" style="display: none;">
+    <textarea class="form-control" placeholder="Tuliskan alasan penolakan" 
+              name="alasan_ditolak" id="alasan_ditolak" style="height: 100px"></textarea>
+    <label for="alasan_ditolak">Alasan Ditolak</label>
+</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="saveBtn">Simpan Perubahan</button>
                 </div>
             </div>
+        </form>
+    </div>
+</div>
+
 
 
         </div>
@@ -130,6 +139,17 @@
 
             $('#editStatusModal').modal('show');
         });
+
+        $(document).on('change', '#status', function() {
+    if ($(this).val() === 'ditolak') {
+        $('#alasanDitolakContainer').show();
+        $('#alasan_ditolak').attr('required', true);
+    } else {
+        $('#alasanDitolakContainer').hide();
+        $('#alasan_ditolak').removeAttr('required');
+        $('#alasan_ditolak').val('');
+    }
+});
 
 
         $(document).ready(function() {
