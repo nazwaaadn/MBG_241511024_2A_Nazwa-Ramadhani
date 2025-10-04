@@ -61,6 +61,7 @@ class DapurController extends BaseController
         'menu_makan' => $result[0]['menu_makan'],
         'jumlah_porsi' => $result[0]['jumlah_porsi'],
         'status' => $result[0]['status'],
+        'alasan_ditolak' => $result[0]['alasan_ditolak'],
         'bahan' => []
     ];
 

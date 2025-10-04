@@ -96,6 +96,7 @@
               <?= ucfirst($permintaan['status']); ?>
             </span>
           </div>
+          <div class="detail-item"><span class="label">Alasan Ditolak:</span> <?= esc($permintaan['alasan_ditolak']); ?></div>
         </div>
       </div>
     </div>
@@ -131,7 +132,7 @@
   </div>
 
   <div class="text-center mt-4 mb-5">
-    <a href="<?= base_url('/Permintaan') ?>" class="btn btn-secondary">
+    <a href="<?= base_url('/dapur') ?>" class="btn btn-secondary">
       <i class="bi bi-arrow-left"></i> Kembali
     </a>
   </div>
