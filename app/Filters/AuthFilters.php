@@ -45,7 +45,7 @@ class AuthFilters implements FilterInterface
     {
         $session = session();
 
-        // ✅ Cegah user yang sudah login untuk kembali ke halaman login
+        // Cegah user yang sudah login untuk kembali ke halaman login
         if ($session->get('isLoggedIn') && service('router')->controllerName() === 'App\Controllers\AuthController') {
             $role = $session->get('role');
 
@@ -59,7 +59,7 @@ class AuthFilters implements FilterInterface
         }
 
 
-        // ✅ Bisa juga tambahin header untuk keamanan
+        // Bisa juga tambahin header untuk keamanan
         $response->setHeader('X-Frame-Options', 'DENY');
         $response->setHeader('X-Content-Type-Options', 'nosniff');
         $response->setHeader('X-XSS-Protection', '1; mode=block');
